@@ -35,14 +35,6 @@ function Shared.OnStart()
         Local.CreateProfile(player)
     end
 
-    task.spawn(function()
-        while true do
-            for _, player in Players:GetPlayers() do
-                Store.updateBalance(tostring(player.UserId), "coins", 1)
-            end
-            task.wait(1)
-        end
-    end)
 end
 
 function Local.SetupLeaderstats(player: Player)
@@ -58,8 +50,8 @@ function Local.SetupLeaderstats(player: Player)
 
     local selector = Selectors.SelectPlayerBalance(tostring(player.UserId))
     local unsubscribe = Store:subscribe(selector, function(balance)
-        coins.Value = balance.coins or 0
-        gems.Value = balance.gems or 0
+        coins.Value = if balance then (balance.coins or 0) else 0
+        gems.Value = if balance then (balance.gems or 0) else 0
     end)
     Players.PlayerRemoving:Connect(function(leavingPlayer: Player)
         if leavingPlayer == player then

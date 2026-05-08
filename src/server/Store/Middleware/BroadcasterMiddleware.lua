@@ -2,7 +2,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Reflex = require(ReplicatedStorage.Packages.Reflex)
 local Net = require(ReplicatedStorage.Packages.Net)
-local Remotes = require(ReplicatedStorage.Remotes)
+local Remotes = require(ReplicatedStorage.NetRemotes)
 local Slices = require(ReplicatedStorage.Store.Slices)
 
 local function broadcasterMiddleware()
